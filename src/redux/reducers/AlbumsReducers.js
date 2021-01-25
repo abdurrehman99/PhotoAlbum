@@ -1,9 +1,17 @@
-export default function (state = {}, action) {
-	switch (action.type) {
-		case 'SET_ALBUM':
-			return {};
+export default function (
+  state = {
+    albumsList: [],
+    singleAlbum: {},
+  },
+  action,
+) {
+  switch (action.type) {
+    case 'SET_ALBUMS_LIST':
+      return {};
+    case 'SET_ALBUM':
+      return {};
 
-		default:
-			return state;
-	}
+    default:
+      return state;
+  }
 }
