@@ -6,14 +6,16 @@ export const styles = StyleSheet.create({
     backgroundColor: themeColor,
     padding: 15,
     alignItems: 'center',
+    justifyContent: 'center',
     width: screenWidth,
   },
   surface: {
     borderRadius: 25,
     backgroundColor: '#FFFF',
-    width: '50%',
+    width: screenWidth * 0.45,
     padding: 10,
   },
+  filterButton: {position: 'absolute', right: 15},
   text: {
     alignSelf: 'center',
   },

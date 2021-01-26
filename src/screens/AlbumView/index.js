@@ -6,7 +6,7 @@ import {Header, ImageThumbnail, SwipeButton} from '../../components';
 import {styles} from './styles';
 
 const AlbumView = () => {
-  const [activeImage, setActiveImage] = useState(1);
+  const [activeImage, setActiveImage] = useState(0);
   let imageURL = 'https://picsum.photos/709';
   return (
     <View style={styles.container}>

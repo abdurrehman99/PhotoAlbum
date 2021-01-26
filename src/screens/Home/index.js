@@ -1,18 +1,41 @@
-import React from 'react';
-import {ScrollView, View} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import React, {useEffect, useState} from 'react';
+import {
+  Modal,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Button,
+} from 'react-native';
 import {connect} from 'react-redux';
-import {AlbumCard, Header} from '../../components';
-import {getAlbumData} from '../../redux/actions/AlbumActions';
+import {AlbumCard, Header, Backdrop} from '../../components';
+import {toggleFilter} from '../../redux/actions';
+import {themeColor} from '../../utils';
 import {styles} from './styles';
-const Home = ({navigation: {navigate}, getAlbumData}) => {
-  const onButtonPress = (a) => {
+
+const Home = ({navigation: {navigate}, toggleFilter, showFilter}) => {
+  const viewAlbumPress = (a) => {
     console.log('Button pressed', a);
     navigate('AlbumView');
   };
   return (
     <View style={styles.container}>
-      <Header text={'Photo Album App'} />
+      <Backdrop visible={showFilter} />
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={showFilter}
+        onRequestClose={toggleFilter}>
+        <View style={styles.modalView}>
+          <Text style={styles.modalText}>Filter Options</Text>
+          <Button
+            title={'Apply Filter'}
+            color={themeColor}
+            onPress={toggleFilter}
+          />
+        </View>
+      </Modal>
+      <Header text={'Photo Album App'} onFilterPress={toggleFilter} />
       <FlatList
         data={[1, 2, 3, 4, 5]}
         scrollEnabled
@@ -23,7 +46,7 @@ const Home = ({navigation: {navigate}, getAlbumData}) => {
             owner={'Album Owner'}
             email={'Email'}
             website={'Website'}
-            onButtonPress={onButtonPress}
+            onButtonPress={viewAlbumPress}
           />
         )}
         keyExtractor={(item, index) => index.toString()}
@@ -32,13 +55,15 @@ const Home = ({navigation: {navigate}, getAlbumData}) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {};
+const mapStateToProps = ({filter: {showFilter}}) => {
+  return {
+    showFilter,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAlbumData: () => dispatch(getAlbumData()),
+    toggleFilter: () => dispatch(toggleFilter()),
   };
 };
 

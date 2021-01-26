@@ -18,7 +18,6 @@ const Index = ({title, owner, email, website, imageURL, onButtonPress}) => {
             onPress={() => onButtonPress('id')}
             color={themeColor}
             title="View Album"
-            textTransform="none"
           />
         </View>
       </View>
