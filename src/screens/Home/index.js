@@ -35,7 +35,7 @@ const Home = ({navigation: {navigate}, toggleFilter, showFilter}) => {
           />
         </View>
       </Modal>
-      <Header text={'Photo Album App'} onFilterPress={toggleFilter} />
+      <Header text={'Home'} onFilterPress={toggleFilter} />
       <FlatList
         data={[1, 2, 3, 4, 5]}
         scrollEnabled

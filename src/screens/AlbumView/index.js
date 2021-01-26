@@ -10,7 +10,7 @@ const AlbumView = () => {
   let imageURL = 'https://picsum.photos/709';
   return (
     <View style={styles.container}>
-      <Header text={'Photo Album App'} />
+      <Header text={'Album View'} />
       <View style={styles.imageContainer}>
         <ImageThumbnail fullWidth uri={imageURL} />
         <SwipeButton style={styles.rightIcon} right />

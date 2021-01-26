@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   surface: {
     borderRadius: 25,
     backgroundColor: '#FFFF',
-    width: screenWidth * 0.45,
+    width: screenWidth * 0.35,
     padding: 10,
   },
   filterButton: {position: 'absolute', right: 15},
