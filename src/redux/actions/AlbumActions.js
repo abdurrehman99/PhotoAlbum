@@ -1,3 +1,5 @@
+import {ApiCreator, GET_ALBUMS_API} from '../../utils';
+
 export const setAlbum = (payload) => {
   return {
     type: 'SET_ALBUM',
@@ -5,7 +7,15 @@ export const setAlbum = (payload) => {
   };
 };
 
-export const getAlbumData = (payload) => async () => {};
+export const getAlbumData = () => async (dispatch) => {
+  try {
+    const responseData = await ApiCreator('GET', GET_ALBUMS_API);
+    console.log('responseData==>', responseData.length);
+    dispatch(setAlbumsList(responseData));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const setAlbumsList = (payload) => {
   return {

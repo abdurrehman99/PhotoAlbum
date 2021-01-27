@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
-import {themeColor} from '../../utils';
+import {themeColor, placeholderImage} from '../../utils';
 import {styles} from './styles';
 import {ImageThumbnail} from '../../components';
 
-const Index = ({title, owner, email, website, imageURL, onButtonPress}) => {
+const Index = ({title, owner, email, website, imageURL, id, onButtonPress}) => {
   return (
     <View style={styles.container}>
-      <ImageThumbnail uri={imageURL} />
+      <ImageThumbnail uri={imageURL ? imageURL : placeholderImage} />
       <View style={styles.info}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.subheading}>{owner}</Text>
@@ -15,7 +15,7 @@ const Index = ({title, owner, email, website, imageURL, onButtonPress}) => {
         <Text style={styles.subheading}>{website}</Text>
         <View style={styles.buttonView}>
           <Button
-            onPress={() => onButtonPress('id')}
+            onPress={() => onButtonPress(id)}
             color={themeColor}
             title="View Album"
           />

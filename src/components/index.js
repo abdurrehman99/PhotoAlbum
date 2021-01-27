@@ -3,5 +3,13 @@ import Header from './Header';
 import ImageThumbnail from './ImageThumbnail';
 import SwipeButton from './SwipeButton';
 import Backdrop from './Backdrop';
+import ActivityIndicator from './ActivityIndicator';
 
-export {AlbumCard, Header, ImageThumbnail, SwipeButton, Backdrop};
+export {
+  AlbumCard,
+  Header,
+  ImageThumbnail,
+  SwipeButton,
+  Backdrop,
+  ActivityIndicator,
+};

@@ -1,23 +1,50 @@
 import React, {useState} from 'react';
-import {ScrollView, View, FlatList, Text} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {connect} from 'react-redux';
+import {View, FlatList, TouchableOpacity} from 'react-native';
 import {Header, ImageThumbnail, SwipeButton} from '../../components';
 import {styles} from './styles';
+import {connect} from 'react-redux';
 
-const AlbumView = () => {
+const AlbumView = ({singleAlbum}) => {
   const [activeImage, setActiveImage] = useState(0);
-  let imageURL = 'https://picsum.photos/709';
+
+  const swipeImage = (direction) => {
+    console.log(direction);
+    switch (direction) {
+      case 'right':
+        if (activeImage < singleAlbum.images.length - 1) {
+          setActiveImage(activeImage + 1);
+        }
+        break;
+
+      case 'left':
+        if (activeImage > 0) {
+          setActiveImage(activeImage - 1);
+        }
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Header text={'Album View'} />
       <View style={styles.imageContainer}>
-        <ImageThumbnail fullWidth uri={imageURL} />
-        <SwipeButton style={styles.rightIcon} right />
-        <SwipeButton style={styles.leftIcon} left />
+        <ImageThumbnail fullWidth uri={singleAlbum.images[activeImage]} />
+        <SwipeButton
+          onPress={() => swipeImage('right')}
+          style={styles.rightIcon}
+          right
+        />
+        <SwipeButton
+          onPress={() => swipeImage('left')}
+          style={styles.leftIcon}
+          left
+        />
       </View>
       <FlatList
-        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
+        data={singleAlbum.images}
         numColumns={3}
         scrollEnabled
         renderItem={({item, index}) => (
@@ -26,7 +53,7 @@ const AlbumView = () => {
               index === activeImage ? styles.activeThumbnail : styles.thumbnail
             }
             onPress={() => setActiveImage(index)}>
-            <ImageThumbnail thumbnail uri={'https://picsum.photos/706'} />
+            <ImageThumbnail thumbnail uri={item} />
           </TouchableOpacity>
         )}
         keyExtractor={(item, index) => index.toString()}
@@ -35,12 +62,10 @@ const AlbumView = () => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {};
+const mapStateToProps = ({albumsData: {singleAlbum}}) => {
+  return {
+    singleAlbum,
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AlbumView);
+export default connect(mapStateToProps, {})(AlbumView);

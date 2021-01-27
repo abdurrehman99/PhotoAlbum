@@ -7,9 +7,15 @@ export default function (
 ) {
   switch (action.type) {
     case 'SET_ALBUMS_LIST':
-      return {};
+      return {
+        ...state,
+        albumsList: action.payload,
+      };
     case 'SET_ALBUM':
-      return {};
+      return {
+        ...state,
+        singleAlbum: action.payload,
+      };
 
     default:
       return state;

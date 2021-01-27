@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
   Modal,
   Text,
@@ -7,20 +7,33 @@ import {
   TouchableOpacity,
   Button,
 } from 'react-native';
-import {connect} from 'react-redux';
-import {AlbumCard, Header, Backdrop} from '../../components';
-import {toggleFilter} from '../../redux/actions';
+import {AlbumCard, Header, Backdrop, ActivityIndicator} from '../../components';
+import {toggleFilter, getAlbumData, setAlbum} from '../../redux/actions';
 import {themeColor} from '../../utils';
 import {styles} from './styles';
+import {connect} from 'react-redux';
 
-const Home = ({navigation: {navigate}, toggleFilter, showFilter}) => {
-  const viewAlbumPress = (a) => {
-    console.log('Button pressed', a);
+const Home = ({
+  navigation: {navigate},
+  toggleFilter,
+  showFilter,
+  albumsList,
+  getAlbumData,
+  setAlbum,
+}) => {
+  const viewAlbumPress = (selectedIndex) => {
+    setAlbum(albumsList[selectedIndex]);
     navigate('AlbumView');
   };
+
+  useEffect(() => {
+    getAlbumData();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Backdrop visible={showFilter} />
+      {/* <ActivityIndicator /> */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -37,15 +50,19 @@ const Home = ({navigation: {navigate}, toggleFilter, showFilter}) => {
       </Modal>
       <Header text={'Home'} onFilterPress={toggleFilter} />
       <FlatList
-        data={[1, 2, 3, 4, 5]}
+        data={albumsList}
         scrollEnabled
-        renderItem={({item, index}) => (
+        renderItem={({
+          item: {username, name, email, website, images},
+          index,
+        }) => (
           <AlbumCard
-            imageURL={'https://picsum.photos/710'}
-            title={'Album Title'}
-            owner={'Album Owner'}
-            email={'Email'}
-            website={'Website'}
+            imageURL={images[0]}
+            title={name}
+            owner={username}
+            email={email}
+            website={website}
+            id={index}
             onButtonPress={viewAlbumPress}
           />
         )}
@@ -55,16 +72,13 @@ const Home = ({navigation: {navigate}, toggleFilter, showFilter}) => {
   );
 };
 
-const mapStateToProps = ({filter: {showFilter}}) => {
+const mapStateToProps = ({filter: {showFilter}, albumsData: {albumsList}}) => {
   return {
     showFilter,
+    albumsList,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleFilter: () => dispatch(toggleFilter()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, {toggleFilter, getAlbumData, setAlbum})(
+  Home,
+);
