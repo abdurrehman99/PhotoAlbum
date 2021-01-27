@@ -8,7 +8,7 @@ const AlbumView = ({singleAlbum}) => {
   const [activeImage, setActiveImage] = useState(0);
 
   const swipeImage = (direction) => {
-    console.log(direction);
+    // console.log(direction);
     switch (direction) {
       case 'right':
         if (activeImage < singleAlbum.images.length - 1) {
@@ -47,6 +47,7 @@ const AlbumView = ({singleAlbum}) => {
         data={singleAlbum.images}
         numColumns={3}
         scrollEnabled
+        style={styles.flatList}
         renderItem={({item, index}) => (
           <TouchableOpacity
             style={

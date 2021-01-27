@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {subheadingColor} from '../../utils';
+import {screenWidth, subheadingColor} from '../../utils';
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -20,5 +20,6 @@ export const styles = StyleSheet.create({
   },
   buttonView: {
     marginTop: 15,
+    width: screenWidth * 0.3,
   },
 });

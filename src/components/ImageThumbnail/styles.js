@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import {screenWidth, screenHeight} from '../../utils';
 export const styles = StyleSheet.create({
   image: {
-    width: screenWidth * 0.55,
+    width: screenWidth * 0.48,
     height: 180,
     borderRadius: 5,
   },

@@ -50,6 +50,7 @@ const Home = ({
       </Modal>
       <Header text={'Home'} onFilterPress={toggleFilter} />
       <FlatList
+        style={styles.flatList}
         data={albumsList}
         scrollEnabled
         renderItem={({

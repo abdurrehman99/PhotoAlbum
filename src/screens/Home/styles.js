@@ -4,8 +4,8 @@ import {screenHeight, screenWidth} from '../../utils';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
   },
+  flatList: {paddingLeft: 5},
   modalView: {
     marginVertical: screenHeight * 0.1,
     marginHorizontal: screenWidth * 0.1,
