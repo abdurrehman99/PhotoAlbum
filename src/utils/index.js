@@ -6,6 +6,9 @@ const screenHeight = Dimensions.get('screen').height;
 const themeColor = 'purple';
 const subheadingColor = 'grey';
 
+const headingFontSize = 16;
+const subheadingFontSize = 15;
+
 const placeholderImage = 'https://via.placeholder.com/400/92c952';
 
 const GET_ALBUMS_API = 'https://hitboxing.herokuapp.com/getAlbumdata';
@@ -16,6 +19,8 @@ export {
   themeColor,
   subheadingColor,
   placeholderImage,
+  headingFontSize,
+  subheadingFontSize,
   GET_ALBUMS_API,
 };
 

@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {screenWidth, subheadingColor} from '../../utils';
+import {
+  screenWidth,
+  subheadingColor,
+  headingFontSize,
+  subheadingFontSize,
+} from '../../utils';
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -11,11 +16,11 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   title: {
-    fontSize: 16,
+    fontSize: headingFontSize,
     marginBottom: 10,
   },
   subheading: {
-    fontSize: 14,
+    fontSize: subheadingFontSize,
     color: subheadingColor,
   },
   buttonView: {

@@ -4,6 +4,9 @@ import ImageThumbnail from './ImageThumbnail';
 import SwipeButton from './SwipeButton';
 import Backdrop from './Backdrop';
 import ActivityIndicator from './ActivityIndicator';
+import ListItem from './ListItem';
+import Heading from './Heading';
+import SubHeading from './SubHeading';
 
 export {
   AlbumCard,
@@ -12,4 +15,7 @@ export {
   SwipeButton,
   Backdrop,
   ActivityIndicator,
+  ListItem,
+  Heading,
+  SubHeading,
 };

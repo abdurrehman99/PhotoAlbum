@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Modal,
   Text,
@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Button,
 } from 'react-native';
-import {AlbumCard, Header, Backdrop, ActivityIndicator} from '../../components';
+import {AlbumCard, Header, Backdrop, ListItem, Heading} from '../../components';
 import {toggleFilter, getAlbumData, setAlbum} from '../../redux/actions';
 import {themeColor} from '../../utils';
 import {styles} from './styles';
@@ -21,14 +21,39 @@ const Home = ({
   getAlbumData,
   setAlbum,
 }) => {
-  const viewAlbumPress = (selectedIndex) => {
-    setAlbum(albumsList[selectedIndex]);
-    navigate('AlbumView');
-  };
+  const [myAlbumList, setMyAlbumList] = useState([]);
+
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   useEffect(() => {
     getAlbumData();
   }, []);
+
+  useEffect(() => {
+    setMyAlbumList(albumsList);
+  }, [albumsList]);
+
+  const viewAlbumPress = (index) => {
+    setAlbum(myAlbumList[index]);
+    navigate('AlbumView');
+  };
+
+  const setFilter = ({name}, index) => {
+    setSelectedIndex(index);
+    applyFilter(name);
+    toggleFilter();
+  };
+
+  const applyFilter = (name) => {
+    const filteredData = albumsList.filter((item) => item.name === name);
+    setMyAlbumList(filteredData);
+  };
+
+  const clearFilter = () => {
+    setMyAlbumList(albumsList);
+    toggleFilter();
+    setSelectedIndex(null);
+  };
 
   return (
     <View style={styles.container}>
@@ -40,18 +65,26 @@ const Home = ({
         visible={showFilter}
         onRequestClose={toggleFilter}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>Filter Options</Text>
+          <Heading text={'Filter Albums'} />
+          {albumsList.map((item, i) => (
+            <ListItem
+              key={i}
+              onPress={() => setFilter(item, i)}
+              selected={selectedIndex === i}
+              text={item.name}
+            />
+          ))}
           <Button
-            title={'Apply Filter'}
+            title={'Clear Filter'}
             color={themeColor}
-            onPress={toggleFilter}
+            onPress={clearFilter}
           />
         </View>
       </Modal>
       <Header text={'Home'} onFilterPress={toggleFilter} />
       <FlatList
         style={styles.flatList}
-        data={albumsList}
+        data={myAlbumList}
         scrollEnabled
         renderItem={({
           item: {username, name, email, website, images},

@@ -3,6 +3,7 @@ import {View, Text} from 'react-native';
 import {styles} from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Heading} from '..';
 
 const Index = ({text, onFilterPress}) => {
   return (

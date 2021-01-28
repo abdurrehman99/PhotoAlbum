@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {screenWidth, themeColor} from '../../utils';
+import {headingFontSize, screenWidth, themeColor} from '../../utils';
 
 export const styles = StyleSheet.create({
   container: {
@@ -18,5 +18,6 @@ export const styles = StyleSheet.create({
   filterButton: {position: 'absolute', right: 15},
   text: {
     alignSelf: 'center',
+    fontSize: headingFontSize,
   },
 });
