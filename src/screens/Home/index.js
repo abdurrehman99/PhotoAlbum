@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
+import {Modal, View, FlatList, Button} from 'react-native';
 import {
-  Modal,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-  Button,
-} from 'react-native';
-import {AlbumCard, Header, Backdrop, ListItem, Heading} from '../../components';
+  AlbumCard,
+  Header,
+  Backdrop,
+  ListItem,
+  Heading,
+  ActivityIndicator,
+} from '../../components';
 import {toggleFilter, getAlbumData, setAlbum} from '../../redux/actions';
 import {themeColor} from '../../utils';
 import {styles} from './styles';
@@ -20,6 +20,7 @@ const Home = ({
   albumsList,
   getAlbumData,
   setAlbum,
+  loading,
 }) => {
   const [myAlbumList, setMyAlbumList] = useState([]);
 
@@ -58,14 +59,14 @@ const Home = ({
   return (
     <View style={styles.container}>
       <Backdrop visible={showFilter} />
-      {/* <ActivityIndicator /> */}
+      <ActivityIndicator loading={loading} />
       <Modal
         animationType="fade"
         transparent={true}
         visible={showFilter}
         onRequestClose={toggleFilter}>
         <View style={styles.modalView}>
-          <Heading text={'Filter Albums'} />
+          <Heading text="Filter Albums" />
           {albumsList.map((item, i) => (
             <ListItem
               key={i}
@@ -75,7 +76,7 @@ const Home = ({
             />
           ))}
           <Button
-            title={'Clear Filter'}
+            title="Clear Filter"
             color={themeColor}
             onPress={clearFilter}
           />
@@ -106,10 +107,15 @@ const Home = ({
   );
 };
 
-const mapStateToProps = ({filter: {showFilter}, albumsData: {albumsList}}) => {
+const mapStateToProps = ({
+  filter: {showFilter},
+  albumsData: {albumsList},
+  loading,
+}) => {
   return {
     showFilter,
     albumsList,
+    loading,
   };
 };
 
