@@ -1,10 +1,10 @@
-import 'react-native';
 import React from 'react';
-import App from '../App';
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+import AlbumView from '../src/screens/AlbumView';
+import {create} from 'react-test-renderer';
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+const AlbumViewScreen = create(<AlbumView />);
+
+test('renders correctly', () => {
+  expect(AlbumViewScreen).toHaveBeenCalled();
 });
