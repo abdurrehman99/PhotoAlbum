@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 3,
     marginTop: 8,
     borderWidth: 2,
+    borderRadius: 5,
     borderColor: themeColor,
   },
 });
