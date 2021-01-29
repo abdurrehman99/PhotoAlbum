@@ -47,7 +47,7 @@ src/
 │   ├── index.js
 │   └── styles.js
 └── utils
-└── index.js
+└── App.js
 </pre>
 
 ## Running app in development environment
