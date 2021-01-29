@@ -11,8 +11,7 @@ App conatains two screens
 
 ## Folder Structure
 
-###### src directory is tha main directory that contains all the source code of this app.Inside it we have following directories.
-
+<pre>
 src/
 ├── components
 │   ├── AlbumCard
@@ -49,6 +48,7 @@ src/
 │   └── styles.js
 └── utils
 └── index.js
+</pe>
 
 ## Running app in development environment
 
