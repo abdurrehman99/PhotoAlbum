@@ -43,9 +43,10 @@ src/
 │   ├── AlbumView
 │   │   ├── index.js
 │   │   └── styles.js
-│   └── Home
-│   ├── index.js
-│   └── styles.js
+│   ├── Home
+│   │   ├── index.js
+│   │   └── styles.js
+│   └── index.js  
 └── utils
 └── App.js
 </pre>
@@ -63,3 +64,6 @@ Use [npm](https://www.npmjs.com/) to install dependencies.
 
 Use the following command to run app on Android devices.
 `npx react-native run-android`
+
+To Run test Suits
+`npm test`

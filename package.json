@@ -13,7 +13,6 @@
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.1",
-    "@types/jest": "^26.0.20",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-gesture-handler": "^1.9.0",
@@ -32,10 +31,15 @@
     "babel-jest": "^26.6.3",
     "eslint": "^7.18.0",
     "jest": "^26.6.3",
+    "jest-fetch-mock": "^3.0.3",
     "metro-react-native-babel-preset": "^0.64.0",
     "react-test-renderer": "16.13.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "automock": false,
+    "setupFiles": [
+      "<rootDir>/src/utils/jestSetup.js"
+    ]
   }
 }

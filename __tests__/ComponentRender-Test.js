@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {create} from 'react-test-renderer';
 import {
   ActivityIndicator,
   AlbumCard,
@@ -11,7 +11,6 @@ import {
   SubHeading,
   SwipeButton,
 } from '../src/components';
-import {create} from 'react-test-renderer';
 
 const ActivityIndicatorTree = create(<ActivityIndicator />),
   AlbumCardTree = create(<AlbumCard />),

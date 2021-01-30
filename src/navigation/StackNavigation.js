@@ -1,7 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import AlbumView from '../screens/AlbumView';
-import Home from '../screens/Home';
+import {Home, AlbumView} from '../screens';
 
 const Stack = createStackNavigator();
 

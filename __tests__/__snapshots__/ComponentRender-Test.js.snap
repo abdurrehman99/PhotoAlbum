@@ -93,6 +93,7 @@ exports[`AlbumCard Snapshot 1`] = `
             "opacity": 1,
           }
         }
+        testID="ViewAlbumButton"
       >
         <View
           style={
